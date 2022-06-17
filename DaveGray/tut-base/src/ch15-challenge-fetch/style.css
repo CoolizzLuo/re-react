@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  width: 100%;
+  padding: 1px;
+  position: fixed;
+  margin-top: -54px;
+}
+
+nav button {
+  width: calc(100% / 3);
+  border: 1px solid #333;
+  border-radius: 2px;
+  background: #ccc;
+  color: #000;
+}
+
+nav button:hover,
+button.active,
+button:focus {
+  background: #333;
+  color: #fff;
+}
+
+ul {
+  width: 100%;
+  padding: 2rem;
+  margin-top: 54px;
+  list-style: disc;
+}
+li {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+table {
+  margin-top: 54px;
+  padding: 1px;
+}
+
+table,
+tr,
+td {
+  border: 1px solid #333;
+}
+
+td {
+  padding: 1rem 0.5rem;
+}
