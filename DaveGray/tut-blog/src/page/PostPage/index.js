@@ -1,3 +1,3 @@
-import NewPost from "./NewPost";
+import PostPage from './PostPage';
 
-export default NewPost;
+export default PostPage;
