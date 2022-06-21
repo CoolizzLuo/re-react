@@ -1,23 +1,16 @@
-import { useContext } from 'react';
-import { useHistory, useParams, Link } from 'react-router-dom';
-import DataContext from '../../context/DataContext';
-import api from '../../api/posts';
+import { useParams, Link, useHistory } from 'react-router-dom';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const PostPage = () => {
-  const { posts, setPosts } = useContext(DataContext);
   const { id } = useParams();
-  const post = posts.find((post) => post.id.toString() === id);
   const history = useHistory();
+  const deletePost = useStoreActions((actions) => actions.deletePost);
+  const getPostById = useStoreState((state) => state.getPostById);
+  const post = getPostById(id);
 
-  const handleDelete = async (id) => {
-    try {
-      await api.delete(`/posts/${id}`);
-      const postList = posts.filter((post) => post.id !== id);
-      setPosts(postList);
-      history.push('/');
-    } catch (err) {
-      console.log(`Error: ${err.message}`);
-    }
+  const handleDelete = (id) => {
+    deletePost(id);
+    history.push('/');
   };
 
   return (
@@ -26,8 +19,8 @@ const PostPage = () => {
         {post && (
           <>
             <h2>{post.title}</h2>
-            <p className='postDate'> {post.datetime}</p>
-            <p className='postBody'> {post.body}</p>
+            <p className='postDate'>{post.datetime}</p>
+            <p className='postBody'>{post.body}</p>
             <Link to={`/edit/${post.id}`}>
               <button className='editButton'>Edit Post</button>
             </Link>
